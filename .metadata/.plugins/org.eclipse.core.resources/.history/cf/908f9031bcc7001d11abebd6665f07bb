@@ -1,0 +1,47 @@
+package commom_method;
+
+import java.io.IOException;
+import java.time.Duration;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class ChromeCommonMethod {
+	WebDriver driver;
+	WebDriverWait wait;
+	
+	public WebDriver launchBrowser()
+	{
+		
+		System.setProperty("webdriver.chrome.driver", "D:\\mavenproject_automation\\naveen_rakenapps\\src\\main\\resources\\lib_server\\chromedriver.exe");
+		  ChromeOptions co=new ChromeOptions();
+		   co.addArguments("--remote-allow-origins=*");
+		   driver=new ChromeDriver(co);
+		  driver.manage().window().maximize();
+		  driver.manage().deleteAllCookies();
+		  wait=new WebDriverWait(driver, Duration.ofSeconds(40));
+		  return driver;
+		   
+    }
+	
+	public void launchAplication() 
+	{
+		driver.get("https://www.rakenapp.com/construction-checklists/demolition");
+	}
+	
+	public void closebrowser() throws Exception {
+		Thread.sleep(3000);
+		driver.close();
+	}
+	
+	
+		// https://peter.sh/experiments/chromium-command-line-switches/ unable to socket
+	
+}
+	
+	
+
+

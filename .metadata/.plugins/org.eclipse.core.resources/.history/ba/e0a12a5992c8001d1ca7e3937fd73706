@@ -1,0 +1,111 @@
+package StepExecute;
+
+import java.time.Duration;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import commom_method.ChromeCommonMethod;
+import commonAssertion.LoginAss;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import objectRepository.ObjectRepo_LoginTeam;
+
+public class LoginTeamStep {
+	WebDriver driver;
+	WebDriverWait wait;
+	
+	ChromeCommonMethod cm;
+	LoginAss la;
+	
+	ObjectRepo_LoginTeam obj;
+	@Given("I want to click on login")
+	public void i_want_to_click_on_login() {
+	   cm=new ChromeCommonMethod();
+	   driver=cm.launchFirefoxBrowser();
+	   obj=new ObjectRepo_LoginTeam(driver);
+	   cm.launchAplication();
+	  // driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+	   wait=new WebDriverWait(driver, Duration.ofSeconds(20));
+
+	   la=new LoginAss();
+	   la.verifyTitle("RakenTitle",driver.getTitle());
+	   
+	   
+	}
+
+	@Given("I want enter username and password")
+	public void i_want_enter_username_and_password() throws Exception 
+	{
+	   obj.LoginCTD.click();
+	   wait.until(ExpectedConditions.visibilityOf(obj.username)).sendKeys("nav1996@gmail.com");
+	  // obj.username.sendKeys("nav1996@gmail.com");
+	   obj.password.sendKeys("Nav@1234");
+	}
+
+	@When("I want login successfully")
+	public void i_want_login_successfully() throws Exception 
+	{
+		obj.loginbtn.click();
+		
+	    
+	}
+
+	@When("I want click on Team and")
+	public void i_want_click_on_team_and() throws Exception 
+	{
+		wait.until(ExpectedConditions.visibilityOf(obj.Teambtn)).click();
+	  // obj.Teambtn.click();
+	     obj.addteam.click();
+	  
+	}
+
+	@When("I want Add Team Members")
+	public void i_want_add_team_members() throws InterruptedException {
+		wait.until(ExpectedConditions.visibilityOf(obj.firstname)).sendKeys("jjkha");
+		//obj.firstname.sendKeys("jdish");
+		obj.lastname.sendKeys("rrt");
+		obj.email.sendKeys("Njk@gmail.com");
+		obj.EID.sendKeys("juiy");
+		obj.phonenum.sendKeys("989767677");
+		obj.role.click();
+		obj.role.sendKeys(Keys.ARROW_DOWN);
+		obj.role.sendKeys(Keys.ENTER);
+	    obj.addbtn.click();
+	    JavascriptExecutor js=(JavascriptExecutor)driver;
+	    js.executeScript("arguments[0].click()", obj.addbtn);
+	    
+        wait.until(ExpectedConditions.visibilityOf(obj.nextbtn)).click();
+		//obj.nextbtn.click();
+		
+	}
+
+	@Then("It should be successfully save")
+	public void it_should_be_successfully_save() throws Exception 
+	{
+		 wait.until(ExpectedConditions.visibilityOf(obj.radiobtn)).click();
+	  //obj.radiobtn.click();
+	  obj.namebtn.click();
+	  Thread.sleep(1000);
+	  obj.savebtn.click();
+	 
+	 
+	}
+	
+	@And("Logout successfully")
+	public void Logout_successfully() throws Throwable {
+		wait.until(ExpectedConditions.visibilityOf(obj.profilebtn)).click();
+	    obj.loguotbnt.click();
+		cm.closebrowser();
+	}
+	
+	
+
+	
+
+}

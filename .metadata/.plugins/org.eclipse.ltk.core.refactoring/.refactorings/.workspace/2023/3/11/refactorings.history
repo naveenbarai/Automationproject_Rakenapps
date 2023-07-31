@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;naveen_rakeapps&apos; to &apos;naveen_rakenapps&apos;&#x0D;&#x0A;- Original element: &apos;naveen_rakeapps&apos;&#x0D;&#x0A;- Renamed element: &apos;naveen_rakeapps&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename Java project &apos;naveen_rakeapps&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=naveen_rakeapps" name="naveen_rakenapps" references="true" stamp="1678864509012" version="1.0"/>
+</session>
